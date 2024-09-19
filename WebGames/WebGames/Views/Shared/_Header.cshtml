@@ -1,0 +1,49 @@
+﻿@using System.Security.Claims;
+@using Microsoft.AspNetCore.Http
+@using Microsoft.AspNetCore.Identity
+@{
+    // Cách 1
+    var userRole = User.FindFirstValue(ClaimTypes.Role);
+}
+<header class="header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-2">
+                <div class="header__logo">
+                    <a href="./index.html">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQN-I9p6C_Hoc-saIYHlF4FI5jfL9jfvQ3tdqIYzTTXSQ&s" alt="">
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-8">
+                <div class="header__nav">
+                    <nav class="header__menu mobile-menu">
+                        <ul>
+                            <li class="active"><a asp-action="Index" asp-controller="Home">Homepage</a></li>
+                            <li>
+                                <a href="./categories.html">Categories <span class="arrow_carrot-down"></span></a>
+                                <ul class="dropdown">
+                                    <li><a href="./categories.html">Categories</a></li>
+                                    <li><a href="./anime-details.html">Anime Details</a></li>
+                                    <li><a href="./anime-watching.html">Anime Watching</a></li>
+                                    <li><a href="./blog-details.html">Blog Details</a></li>
+                                    <li><a href="./signup.html">Sign Up</a></li>
+                                    <li><a href="./login.html">Login</a></li>
+                                </ul>
+                            </li>
+                            <li><a asp-action="Privacy" asp-controller="Home">Our Blog</a></li>
+                            <li><a asp-action="Contact" asp-controller="Home">Contacts</a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            <div class="col-lg-2">
+                <div class="header__right">
+                    <a asp-action="Cart" asp-controller="Home" class="search-switch"><span class="icon_cart"></span></a>
+                    <a asp-action="logout" asp-controller="Login">Hello, @User.Identity.Name<span class="icon_profile"></span></a>
+                </div>
+            </div>
+        </div>
+        <div id="mobile-menu-wrap"></div>
+    </div>
+</header>

@@ -1,0 +1,122 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+
+    var congty = ViewData["congtycungcapnhieunhat"] as List<Congtycungcap>;
+    var nhanvien = ViewData["nhanvienbannhieunhat"] as List<Takhoan>;
+}
+
+
+<div class="row" style="margin-left: 50px">
+    <div style="width: 100%">
+        <h1>Thống kê</h1>
+    </div>
+
+
+    <div style="width: 100%">
+        <h1>Xuất file</h1>
+
+        <form asp-action="excel" method="post">
+            <div class="form-group">
+                <input type="submit" value="Xuất file" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+<div style="margin-top: -300px; margin-left: 100px;">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    1. Sản phẩm bán được nhiều nhất
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+                <tr>
+                @foreach (var product in ViewBag.sanphamBanHot)
+                    {
+                        <td>@product </td>
+                    }
+                </tr>
+            
+
+        </tbody>
+    </table>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    2. Số lượng
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Tổng tiền nhập: @ViewData["totalNhap"] VNĐ</td>
+                
+            </tr>
+
+            <tr>
+                <td>Tổng tiền xuất: @ViewData["totalXuat"] VNĐ</td>s
+            </tr>
+
+
+        </tbody>
+    </table>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    3. Công ty bán được nhiều nhất
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in congty)
+            {
+                <tr>
+                    <td>Tên công ty: @item.Ten </td>
+
+                </tr>
+            }
+            
+
+            
+
+        </tbody>
+    </table>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    4. Nhân viên bán được nhiều hàng nhất
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in nhanvien)
+            {
+                <tr>
+                    <td>Tên nhân viên: @item.Fullname </td>
+
+                </tr>
+            }
+
+
+
+
+        </tbody>
+    </table>
+</div>
+</div>
+
+
+
+
+
+
+

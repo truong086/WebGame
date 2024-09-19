@@ -1,0 +1,48 @@
+﻿@model IEnumerable<WebGames.Entity.Cart>
+@{
+    ViewData["Title"] = "Cart";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var tinhtien = 0.0;
+    var tongtien = 0.0;
+    var index = 1;
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>STT</th>
+            <th>Mã hàng hóa</th>
+            <th>Sản phẩm</th>
+            <th>Hình ảnh</th>
+            <th>Số lượng</th>
+            <th>Giá</th>
+            <th>Tổng tiền</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var item in Model)
+        {
+            
+            <tr style="color: white">
+                <td>@(index++)</td>
+                <td>@item.Mahh</td>
+                <td>@item.tieude</td>
+                <td><img style="width: 100px" src="@item.hinhanh" /></td>
+                <td>@item.soluong</td>
+                <td>@item.gia</td>
+                <td>@item.tonggia</td>
+            </tr>
+            tinhtien += item.tonggia;
+            tongtien += tinhtien; 
+            
+        }
+
+    </tbody>
+</table>
+<div>
+    <h1>@tongtien VNĐ</h1>
+    <a asp-action="thanhtoan" asp-controller="Home">
+        <button class="btn btn-success">Thanh toán</button>
+    </a>
+</div>
+

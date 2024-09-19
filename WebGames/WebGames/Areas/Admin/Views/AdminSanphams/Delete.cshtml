@@ -1,0 +1,64 @@
+﻿@model WebGames.Models.Sanpham
+
+@{
+    ViewData["Title"] = "Delete";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>Delete</h1>
+
+<h3>Bạn chắc chắn muốn xóa sản phẩm game này chứ?</h3>
+<div>
+    <h4>Loaitin</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Ten)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Ten)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Noidung)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Noidung)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Hinhanh)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Hinhanh)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Solanclick)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Solanclick)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Gia)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Gia)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.TheloaiId)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.TheloaiId)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Ngaytao)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Ngaytao)
+        </dd>
+    </dl>
+
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Id" />
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a asp-action="Index">Back to List</a>
+    </form>
+</div>

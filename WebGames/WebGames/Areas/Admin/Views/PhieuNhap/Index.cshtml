@@ -1,0 +1,86 @@
+﻿@model X.PagedList.IPagedList<WebGames.Models.Phieunhap>
+@using X.PagedList.Mvc.Core
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<div class="row" style="margin-left: 100px">
+    <div style="width: 100%">
+        <h1>Quản lý phiếu nhập</h1>
+
+        <p>
+            <a asp-action="RouterAdd">Create New</a>
+        </p>
+        <form asp-action="Index" method="get" class="form">
+            <div>
+                <label>Từ</label>
+                <input type="number" name="tungay" />
+            </div>
+            <div>
+                <label>Đến</label>
+                <input type="number" name="denngay" />
+            </div>
+            <div>
+                <button class="btn btn-success" type="submit">Gửi</button>
+            </div>
+        </form>
+    </div>
+
+
+    <div style="margin-top: -300px">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        Mã người nhập
+                    </th>
+                    <th>
+                        Số lượng
+                    </th>
+                    <th>
+                        Ngày nhập
+                    </th>
+                    <th>
+                        Mã sản phẩm
+                    </th>
+                    <th>Trạng thái</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model != null)
+                {
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                @item.NguoinhapId
+                            </td>
+                            <td>
+                                @item.Soluong
+                            </td>
+                            <td>
+                                @item.Ngaynhap
+                            </td>
+                            <td>
+                                @item.SanphamId
+                            </td>
+                            <td>
+                                <a asp-action="RouterEdit" asp-route-id="@item.Id">Edit</a> |
+                                <a asp-action="DeleteData" asp-route-id="@item.Id">Delete</a>
+                            </td>
+                        </tr>
+                    }
+                }
+
+            </tbody>
+        </table>
+        <div class="class1">
+            @Html.PagedListPager(Model, page => Url.Action("Index", "AdminOrderDetais", new { page = page }))
+        </div>
+    </div>
+</div>
+
+
+

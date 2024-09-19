@@ -1,0 +1,97 @@
+﻿@model X.PagedList.IPagedList<WebGames.Models.Takhoan>
+@using X.PagedList.Mvc.Core
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+
+<div class="row" style="margin-left: 100px">
+    <div style="background-image: url('https://tse3.explicit.bing.net/th?id=OIP.1yMkr5ln2qERAwjaWgIjMQHaEK&pid=Api&P=0&h=220'); width: 100%; background-repeat: no-repeat; background-size: cover;">
+    </div>
+    <div style="width: 100%">
+        <h1>Quản lý Account</h1>
+
+        <p>
+            <a asp-action="Create">Create New</a>
+        </p>
+        <form asp-action="Index" method="get" class="form">
+            <div>
+                <label>Tên</label>
+                <input type="text" name="name" />
+            </div>
+            <div>
+                <label>Từ</label>
+                <input type="number" name="to" />
+            </div>
+            <div>
+                <label>Đến</label>
+                <input type="number" name="from" />
+            </div>
+            <div>
+                <button class="btn btn-success" type="submit">Gửi</button>
+            </div>
+        </form>
+    </div>
+
+
+    <div style="margin-top: -300px">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>
+                        Tên tài khoản
+                    </th>
+                    <th>
+                        Mật khẩu
+                    </th>
+                    <th>
+                        Fullname
+                    </th>
+                    <th>
+                        Email
+                    </th>
+                    <th>
+                        Phân quyền
+                    </th>
+                    <th>Trạng thái</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @item.Tentaikhoan
+                        </td>
+                        <td>
+                            @item.Matkhau
+                        </td>
+                        <td>
+                            @item.Fullname
+                        </td>
+                        <td>
+                            @item.Email
+                        </td>
+                        <td>
+                            @item.Phanquyen
+                        </td>
+                        <td>
+                            <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                            <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                            <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <div class="class1">
+            @Html.PagedListPager(Model, page => Url.Action("Index", "AdminTakhoans", new {page = page}))
+        </div>
+    </div>
+
+    <div style="background: yellow; width: 100%; height: 100px; text-align: center; line-height: 100px;">
+        ABC
+    </div>
+</div>
